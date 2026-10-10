@@ -17,7 +17,8 @@ Vercel 무료 플랜과 Upstash 무료 한도로 충분합니다.
    버튼 대신 이 저장소를 포크한 뒤 [vercel.com/new](https://vercel.com/new)에서 가져와도 됩니다 (Framework Preset: **Other**, 나머지는 그대로).
 2. **저장소 연결:** Vercel에서 만든 프로젝트 > **Storage** 탭 > **Create Database** > **Upstash for Redis**(무료 플랜)를 만들고 이 프로젝트에 연결합니다. 환경 변수(`UPSTASH_REDIS_REST_URL` / `KV_REST_API_URL` 등)는 자동으로 들어갑니다.
 3. **다시 배포:** **Deployments** 탭에서 가장 최근 배포의 ⋯ > **Redeploy**를 누릅니다. 환경 변수는 다시 배포해야 적용됩니다.
-4. **확인:** 배포 주소(`https://lilacanime-server-xxxx.vercel.app`)를 브라우저로 열면 "서버가 준비되었습니다"가 나옵니다. 설정이 덜 됐으면 무엇이 빠졌는지 알려 줍니다.
+4. **주소 확인:** 프로젝트 첫 화면의 **Domains**에 있는 고정 주소(예: `https://lilacanime-server.vercel.app`)를 씁니다. 배포마다 생기는 `…-a1b2c3d4-계정.vercel.app` 같은 주소는 Vercel 보호 기능(Vercel Authentication) 때문에 Vercel에 로그인한 브라우저에서만 열려서 앱이 연결하지 못합니다. 그런 주소밖에 없다면 **Settings > Deployment Protection**에서 **Vercel Authentication**을 끄세요.
+5. **확인:** 그 주소를 Vercel에 로그인하지 않은 창(시크릿 창)으로 열면 "서버가 준비되었습니다"가 나옵니다. 설정이 덜 됐으면 무엇이 빠졌는지 알려 줍니다.
 
 ## 앱에 연결하기
 
