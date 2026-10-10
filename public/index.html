@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LilacAnime 동기화 서버</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f7f5f9; --panel: #fff; --text: #1c1b1f; --muted: #6b6870; --ok: #2e7d4f; --bad: #b3261e; --accent: #8c6a8c; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #121212; --panel: #1e1e1e; --text: #f0edf6; --muted: #a3a0a8; --ok: #7fd1a0; --bad: #f2b8b5; --accent: #c8a2c8; } }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--text); font: 16px/1.6 "Segoe UI", Pretendard, system-ui, sans-serif; }
+  main { width: min(520px, calc(100% - 32px)); padding: 28px; border-radius: 16px; background: var(--panel); box-shadow: 0 10px 40px #0002; }
+  h1 { margin: 0 0 4px; font-size: 22px; } h1 span { color: var(--accent); }
+  p { margin: 8px 0; color: var(--muted); } #state { font-weight: 600; color: var(--text); }
+  .ok { color: var(--ok) !important; } .bad { color: var(--bad) !important; }
+  code { padding: 2px 6px; border-radius: 6px; background: #8881; word-break: break-all; }
+  ul { padding-left: 20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1><span>LilacAnime</span> 동기화 서버</h1>
+  <p id="state">상태를 확인하는 중...</p>
+  <ul id="problems"></ul>
+  <p>앱의 <b>설정 › 기기 동기화</b>에 이 페이지 주소 <code id="address"></code> 와 Vercel에 설정한 비밀번호를 넣으면 연결됩니다.</p>
+</main>
+<script>
+  document.getElementById('address').textContent = location.origin;
+  fetch('/api/status').then(response => response.json()).then(status => {
+    const state = document.getElementById('state');
+    state.textContent = status.ready ? '서버가 준비되었습니다.' : '설정이 끝나지 않았습니다.';
+    state.className = status.ready ? 'ok' : 'bad';
+    for (const problem of status.problems) { const li = document.createElement('li'); li.textContent = problem; document.getElementById('problems').append(li); }
+  }).catch(() => { const state = document.getElementById('state'); state.textContent = '서버 상태를 읽지 못했습니다.'; state.className = 'bad'; });
+</script>
+</body>
+</html>

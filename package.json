@@ -1,0 +1,14 @@
+{
+  "name": "lilacanime-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LilacAnime sync server: your own Vercel deployment that keeps 내 목록 and 시청 기록 in step between the desktop and mobile apps",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
